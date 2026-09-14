@@ -1,16 +1,4 @@
 # Átomos de Confusão -- Análise com CodeQL
-
-Ferramentas para detectar, contar e localizar **átomos de confusão** ("atoms of
-confusion") em repositórios JavaScript/TypeScript reais, usando queries
-[CodeQL](https://codeql.github.com/). O catálogo de átomos e a metodologia de
-mineração seguem o trabalho de:
-
-- Torres, A. et al. *"An Investigation of confusing code patterns in
-  JavaScript"*. Journal of Systems & Software 203 (2023): 111731.
-  ([dataset original](https://github.com/rbonifacio/AtomsJS))
-- Gopstein, D. et al. *"Understanding misunderstandings in source code"*.
-  ESEC/FSE 2017.
-
 ## Estrutura do projeto
 
 ```
