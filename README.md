@@ -25,9 +25,11 @@ codeql-scripts/
 - Python 3.8+
 - `git` no PATH (só necessário se algum repositório for informado como URL)
 
-## Como rodar
+## Como rodar 
 
-### Analisar um repositório
+Para rodar esse script você pode escolher por duas maneiras:
+
+### 1. Analisar um repositório
 
 ```powershell
 # Repositório local
@@ -40,7 +42,7 @@ python run_analysis.py --repo https://github.com/facebook/react
 python run_analysis.py
 ```
 
-### Analisar vários repositórios de uma vez
+### 2. Analisar vários repositórios de uma vez
 
 Preencha o `repos.csv`:
 
@@ -74,8 +76,7 @@ python run_analysis.py --repos repos.csv
 ## Como adicionar um novo átomo de confusão
 
 O script não tem os átomos "hardcoded": ele roda **qualquer** arquivo `.ql`
-que encontrar na pasta `query/`. Para adicionar um novo átomo (por exemplo,
-*Omitted Curly Braces* ou *Comma Operator*, da Tabela 1 do artigo):
+que encontrar na pasta `query/`. Para adicionar um novo átomo:
 
 1. Crie um novo arquivo `.ql` dentro de `query/`, seguindo o padrão dos
    existentes: `@kind table` no cabeçalho e um `select` final com pelo menos
@@ -102,8 +103,3 @@ agregado no mesmo espírito da Tabela 4 do artigo:
 |-------------------------------|-----------------------------------------------------------|
 | `pct_projetos_com_atomo`      | % dos repositórios analisados em que o átomo ocorre ≥ 1 vez |
 | `media_ocorrencias_por_kloc`  | Média de ocorrências/KLOC entre os repositórios            |
-
-> A contagem de LOC é uma aproximação simples (linhas não-vazias em arquivos
-> de código, ignorando `node_modules`). Para números mais próximos aos do
-> artigo original, considere substituir por uma chamada à ferramenta
-> [`cloc`](https://github.com/AlDanial/cloc).
