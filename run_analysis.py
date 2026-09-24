@@ -43,16 +43,19 @@ import subprocess
 import sys
 from collections import defaultdict
 from pathlib import Path
+import os 
+
 
 CODE_EXTENSIONS = {".js", ".jsx", ".ts", ".tsx", ".mjs", ".cjs"}
 IGNORE_DIR_NAMES = {"node_modules", "dist", "build", ".git", "vendor", "coverage", ".next"}
 
 
-def run(cmd, cwd=None):
+
+def run(cmd, cwd=None, env=None):
     """Roda um comando mostrando a saida em tempo real (sem buffer),
     para que o usuario veja o progresso em vez de uma tela parada."""
     print(f"\n$ {' '.join(str(c) for c in cmd)}")
-    result = subprocess.run(cmd, cwd=cwd)
+    result = subprocess.run(cmd, cwd=cwd, env=env) 
     if result.returncode != 0:
         raise RuntimeError(f"Comando falhou (codigo {result.returncode}): {' '.join(str(c) for c in cmd)}")
     return result
@@ -124,8 +127,21 @@ def ensure_database(name: str, source_dir: Path, language: str, dbs_dir: Path, f
 
     print(f"[{name}] criando banco de dados CodeQL — em repositorios grandes isso pode levar "
           f"varios minutos. A saida do CodeQL vai aparecer abaixo em tempo real:")
+    
+    custom_env = os.environ.copy()
+    if language == "javascript":
+        filters = [
+            "exclude:**/*",
+            "include:**/*.js",
+            "include:**/*.jsx",
+            "include:**/*.ts",
+            "include:**/*.tsx"
+        ]
+        custom_env["LGTM_INDEX_FILTERS"] = "\n".join(filters)
+
     run(["codeql", "database", "create", str(db_path),
-         f"--language={language}", f"--source-root={source_dir}"])
+         f"--language={language}", f"--source-root={source_dir}"], env=custom_env)
+    
     return db_path
 
 

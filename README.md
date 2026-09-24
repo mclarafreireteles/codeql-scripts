@@ -96,8 +96,7 @@ que encontrar na pasta `query/`. Para adicionar um novo átomo:
 | `loc`                    | Linhas de código não-vazias em arquivos `.js/.jsx/.ts/.tsx` (aproximado) |
 | `ocorrencias_por_kloc`   | Ocorrências a cada 1000 linhas de código                            |
 
-**`resultado_por_atomo.csv`** (só gerado com 2+ repositórios) — resumo
-agregado no mesmo espírito da Tabela 4 do artigo:
+**`resultado_por_atomo.csv`** (só gerado com 2+ repositórios) — resumo:
 
 | Coluna                        | Significado                                              |
 |-------------------------------|-----------------------------------------------------------|
