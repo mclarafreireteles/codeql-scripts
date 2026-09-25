@@ -20,4 +20,4 @@ where
     lit.getRawValue().regexpMatch("0[oO][0-7]+n?")       or // octal moderno (ES6), ex: 0o31
     lit.getRawValue().regexpMatch("0[0-7]+")                // octal legado, ex: 013
   )
-select lit, "Change of literal encoding"
+select lit.getFile().getRelativePath(), lit.getLocation().getStartLine(), lit.getLocation().getEndLine(), "Mudança de codificação literal"

@@ -14,4 +14,4 @@ where
   not a.getTopLevel().isMinified() and
   not a.getParent() instanceof ExprStmt and
   not a.getParent() instanceof ForStmt
-select a, "Assigment as Value"
+select a.getFile().getRelativePath(), a.getLocation().getStartLine(), a.getLocation().getEndLine(), "Assigment as Value"

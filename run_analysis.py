@@ -135,11 +135,12 @@ def run_query(db_path: Path, query_path: Path, tmp_dir: Path, source_dir: Path, 
             file_path = ""
             start_line = end_line = 0
             
-            if len(row) >= 5:
+            # Novo parsing à prova de falhas (espera 4 colunas do QL)
+            if len(row) >= 4:
                 try:
-                    start_line = int(row[-4])
-                    end_line = int(row[-2])
-                    file_path = row[-5]
+                    file_path = str(row[0])
+                    start_line = int(row[1])
+                    end_line = int(row[2])
                 except ValueError:
                     pass
             
