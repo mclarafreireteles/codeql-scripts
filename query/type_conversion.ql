@@ -15,4 +15,4 @@ where
     (a.getLeftOperand() instanceof NumberLiteral and a.getRightOperand() instanceof StringLiteral) or
     (a.getLeftOperand() instanceof StringLiteral and a.getRightOperand() instanceof NumberLiteral)
   )
-select a, "Coerção implícita String/Number"
+select a, "Type Conversion"
